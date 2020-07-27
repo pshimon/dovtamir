@@ -25,16 +25,22 @@ print(wimg,himg)
 #initial position
 x = 0.0
 y = 0.0 
-direction = 'right'
+direction = 'zero'
 run=True
 while run: # the main game loop
     s.fill(BG)
     for event in pygame.event.get():
         key_pressed = pygame.key.get_pressed()
-        if event.type == pygame.QUIT or key_pressed[pygame.K_ESCAPE] :
+        if event.type == QUIT or key_pressed[K_ESCAPE] :
             run=False
+            break
+        if  key_pressed[K_RIGHT] :
+            direction = 'right'
+        elif key_pressed[K_LEFT] :
+            direction = 'right'
+#        else :
 
-    if direction == 'right':
+    if direction == 'left':
         x += 5
         s.blit(img1, (x, y))
         if x+wimg >= W:

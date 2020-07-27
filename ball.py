@@ -9,6 +9,10 @@ FPS = 30 # frames per second setting
 BG = (0, 0, 180) #background color
 CLR= (0,200,200) # obj color
 R=20 # radius
+DVX=5
+DVY=5
+VX0=0
+VY0=0
 pygame.init()
 
 fpsClock = pygame.time.Clock()
@@ -23,8 +27,8 @@ def draw_obj(x,y):
 #initial position
 x = W/2
 y = H/2 
-vx=0
-vy=0
+vx=VX0
+vy=VY0
 run=True
 while run: # the main game loop
     s.fill(BG)
@@ -37,13 +41,13 @@ while run: # the main game loop
                 run =False
                 break
             if event.key==K_UP:
-                vy=-3
+                vy=vy-DVY
             if event.key==K_DOWN:
-                vy=3
+                vy=vy+DVY
             if event.key==K_RIGHT:
-                vx=4
+                vx=vx+DVX
             if event.key==K_LEFT:
-                vx=-4
+                vx=vx-vx-DVX
 
         if event.type==KEYUP:
             if event.key==K_UP:
