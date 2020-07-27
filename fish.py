@@ -1,68 +1,72 @@
 #!/usr/bin/python
-# dov panfil fish animation 2020-07-16
-import pygame, sys
+# dov panfil ball animation 2020-07-26
+import pygame, sys,math
 from pygame.locals import *
 
-W=800 #window width
-H=600 #window height
+W=640 #window width
+H=480 #window height
 FPS = 30 # frames per second setting
 BG = (0, 0, 180) #background color
-
+CLR= (0,200,200) # obj color
+R=20 # radius
+DVX=5
+DVY=5
+VX0=0
+VY0=0
 pygame.init()
-
+img = pygame.image.load('fish.png')
 fpsClock = pygame.time.Clock()
-
 # set up the window
 s = pygame.display.set_mode((W, H), 0, 32)
 pygame.display.set_caption('Fish Animation')
 
-#img = pygame.image.load('fugu.png')
-img = pygame.image.load('fish.png')
-img1=pygame.transform.flip(img,True,False)
-wimg=img.get_rect().right-img.get_rect().left
-himg=img.get_rect().bottom-img.get_rect().top
-print(wimg,himg)
+def draw_obj(x,y,vx,vy):
+    ang=180/math.pi*math.atan2(vy,vx)
+    i=pygame.transform.rotate(img,ang)
+    s.blit(i, (x, y))
+
 #initial position
-x = 0.0
-y = 0.0 
-direction = 'zero'
+x = W/2
+y = H/2 
+vx=VX0
+vy=VY0
 run=True
 while run: # the main game loop
     s.fill(BG)
     for event in pygame.event.get():
-        key_pressed = pygame.key.get_pressed()
-        if event.type == QUIT or key_pressed[K_ESCAPE] :
-            run=False
+        if event.type==QUIT:
+            run =False
             break
-        if  key_pressed[K_RIGHT] :
-            direction = 'right'
-        elif key_pressed[K_LEFT] :
-            direction = 'right'
-#        else :
+        if event.type==KEYDOWN:
+            if event.key== K_ESCAPE:
+                run =False
+                break
+            if event.key==K_UP:
+                vy=vy-DVY
+            if event.key==K_DOWN:
+                vy=vy+DVY
+            if event.key==K_RIGHT:
+                vx=vx+DVX
+            if event.key==K_LEFT:
+                vx=vx-DVX
 
-    if direction == 'left':
-        x += 5
-        s.blit(img1, (x, y))
-        if x+wimg >= W:
-            direction = 'down'
-    elif direction == 'down':
-        y += 5
-        s.blit(img1, (x, y))
-        if y+himg >= H:
-            direction = 'left'
-    elif direction == 'left':
-        x -= 5
-        s.blit(img, (x, y))
-        if x <= 0:
-            direction = 'up'
-    elif direction == 'up':
-        y -= 5
-        s.blit(img, (x, y))
-        if y <= 0:
-            direction = 'right'
+        if event.type==KEYUP:
+            if event.key==K_UP:
+                vy=0
+            if event.key==K_DOWN:
+                vy=0
+            if event.key==K_RIGHT:
+                vx=0
+            if event.key==K_LEFT:
+                vx=0
+    if x>=W-R or x<R:
+        vx=-vx
+    if y>=H-R or y<R:
+        vy=-vy
 
-    
-
+    x=x+vx
+    y=y+vy              
+    draw_obj(x,y,vx,vy)
     pygame.display.update()
     fpsClock.tick(FPS)
 
