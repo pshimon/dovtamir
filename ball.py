@@ -47,7 +47,7 @@ while run: # the main game loop
             if event.key==K_RIGHT:
                 vx=vx+DVX
             if event.key==K_LEFT:
-                vx=vx-vx-DVX
+                vx=vx-DVX
 
         if event.type==KEYUP:
             if event.key==K_UP:
