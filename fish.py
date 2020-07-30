@@ -14,7 +14,7 @@ DVY=5
 VX0=0
 VY0=0
 pygame.init()
-img = pygame.image.load('fish.png')
+img = pygame.transform.flip(pygame.image.load('fish.png'),True,False)
 fpsClock = pygame.time.Clock()
 # set up the window
 s = pygame.display.set_mode((W, H), 0, 32)
@@ -22,7 +22,11 @@ pygame.display.set_caption('Fish Animation')
 
 def draw_obj(x,y,vx,vy):
     ang=180/math.pi*math.atan2(vy,vx)
-    i=pygame.transform.rotate(img,ang)
+    if vx<0 :
+        i=pygame.transform.rotate(img,ang)
+        i = pygame.transform.flip(i,False,True)
+    else:
+        i=pygame.transform.rotate(img,-ang)
     s.blit(i, (x, y))
 
 #initial position
@@ -49,16 +53,7 @@ while run: # the main game loop
                 vx=vx+DVX
             if event.key==K_LEFT:
                 vx=vx-DVX
-
-        if event.type==KEYUP:
-            if event.key==K_UP:
-                vy=0
-            if event.key==K_DOWN:
-                vy=0
-            if event.key==K_RIGHT:
-                vx=0
-            if event.key==K_LEFT:
-                vx=0
+                
     if x>=W-R or x<R:
         vx=-vx
     if y>=H-R or y<R:
