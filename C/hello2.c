@@ -1,4 +1,5 @@
 #include <stdio.h> 
+#define ONE 1
 int main()  {
     int a;
     float b;
@@ -11,7 +12,7 @@ int main()  {
     printf( "You entered %f\n", b );
     printf( "Please enter an double number: " );
     scanf( "%lf", &c );
-    printf( "You entered %f\n", c );
+    printf( "You entered %lf\n", c );
 
     return 0;
 }
