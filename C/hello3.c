@@ -3,12 +3,23 @@
 int main()  {
     int a,b,c;
     double a1,b1,c1;
+    int ret;
     printf( "Please enter 2 integer numbers: " );
-    scanf( "%d %d", &a,&b );
+    ret=scanf( "%d %d", &a,&b );
+    if(ret!=2) {
+        fprintf(stderr,"scanf failed\n");
+        return 1;
+    }
+
     c=a/b;
     printf( "%d/%d=%d\n", a,b,c );
     printf( "Please enter 2 double numbers: " );
-    scanf( "%lf %lf", &a1,&b1 );
+    ret=scanf( "%lf %lf", &a1,&b1 );
+    if(ret!=2) {
+        fprintf(stderr,"scanf failed\n");
+        return 2;
+    }
+
     c1=a1/b1;
     printf( "%f/%f=%f\n", a1,b1,c1 );
     c=a1/b;
