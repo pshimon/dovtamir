@@ -1,19 +1,24 @@
 #include <stdio.h>
+#define N 10
 int main()
 {
-    int x;
+    int j;
+    double a[N];
+    double *p;
+    for ( j = 0; j < N; j++ ) {
+        a[j]=(j+0.0)/N;
+        printf( "%d %f\n", j,a[j] );
+    }
+    j=0;
+    p=a;
+    while ( j < N ) { 
 
-    for ( x = 0; x < 10; x++ ) {
-        printf( "%d\n", x );
+        printf( "%d %f %f\n", j ,*(p+j),p[j]);
+        j++;
     }
-    x=0;
-    while ( x < 10 ) { 
-        printf( "%d\n", x );
-        x++;
-    }
-    x = 0;
+    j = 0;
     do {
         printf( "Hello, world!\n" );
-    } while ( x != 0 );
+    } while ( j != 0 );
 }
 
