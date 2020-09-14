@@ -1,5 +1,7 @@
 #include <stdio.h> 
 #include <math.h>
+
+#pragma warning(disable : 4996)
 #define DEAD_LEVEL 1.0
 int main()  {
     int n,relative;

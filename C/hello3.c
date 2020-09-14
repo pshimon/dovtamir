@@ -1,4 +1,5 @@
-#include <stdio.h> 
+#include <stdio.h>
+#pragma warning(disable : 4996)
 #define ONE 1
 int main()  {
     int a,b,c;
@@ -22,7 +23,7 @@ int main()  {
 
     c1=a1/b1;
     printf( "%f/%f=%f\n", a1,b1,c1 );
-    c=a1/b;
+    c=(int) (a1/b);
     c1=a/b1;
     printf( "%d %f\n", c,c1 );
     return 0;
