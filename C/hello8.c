@@ -26,7 +26,10 @@ int main()
     char fullname[2*STR_SIZE]; /* Big enough to hold both name and lastname */
  
     printf( "Please enter your name: " );
-    fgets( name, STR_SIZE, stdin );
+    if(!fgets( name, STR_SIZE, stdin )) {
+        fprintf(stderr,"fgets failed\n");
+        return 1;
+    }
  
     /* see definition above */
     strip_newline( name, STR_SIZE );
@@ -43,7 +46,11 @@ int main()
     // Find the length of your name
     printf( "Your name is %ld letters long \n", strlen ( name ) );
     printf( "Enter your last name: " );
-    fgets( lastname, STR_SIZE, stdin );
+    if (!fgets( lastname, STR_SIZE, stdin )) {
+        fprintf (stderr,"fgets failed\n");
+        return 2;
+    }
+
     strip_newline( lastname, STR_SIZE );
     fullname[0] = '\0';            
     /* strcat will look for the \0 and add the second string starting at
@@ -52,7 +59,7 @@ int main()
     strcat( fullname, " " );      /* Separate the names by a space */
     strcat( fullname, lastname ); /* Copy lastname onto the end of fullname */
     printf( "Your full name is %s\n",fullname );
- 
-     
+
+
     return 0;
 }

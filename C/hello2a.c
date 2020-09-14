@@ -1,6 +1,10 @@
 #include <stdio.h> 
 #include <math.h>
-#pragma warning(disable : 4996)
+
+#ifdef _WIN32
+    #pragma warning(disable : 4996)
+#endif
+
 #define DEAD_LEVEL 1.0
 int main()  {
     int n,relative;

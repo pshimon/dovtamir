@@ -1,5 +1,9 @@
 #include <stdio.h>
-#pragma warning(disable : 4996)
+
+#ifdef _WIN32
+    #pragma warning(disable : 4996)
+#endif
+
 #define ONE 1
 int main()  {
     int a,b,c;
