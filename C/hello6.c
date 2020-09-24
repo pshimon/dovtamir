@@ -1,17 +1,17 @@
 #include <stdio.h>
-#define N 10
+#define ARRAY_SIZE 10
 int main()
 {
     int j;
-    double a[N];
+    double a[ARRAY_SIZE];
     double *p;
-    for ( j = 0; j < N; j++ ) {
-        a[j]=(j+0.0)/N;
+    for ( j = 0; j < ARRAY_SIZE; j++ ) {
+        a[j]=(j+0.0)/ARRAY_SIZE;
         printf( "%d %f\n", j,a[j] );
     }
     j=0;
     p=a;
-    while ( j < N ) { 
+    while ( j < ARRAY_SIZE ) { 
 
         printf( "%d %f %f\n", j ,*(p+j),p[j]);
         j++;
