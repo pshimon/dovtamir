@@ -10,10 +10,16 @@ CLOPT:=$(COPT)
 	$(CC) -c $(COPT)   $< -o $@ 
 %: %.c
 	$(CC) $(CLOPT)  -o $@ $^ $(SDL_LIBS)  -lm 
+LSTC:=sdl.c
+SLST:=$(LSTC:.c=.o)
 LSTBC:=hello_win.c hello_sound.c doom_fire.c simple_net.c 02.c
-
 TRG:=$(LSTBC:.c=)
-all: $(TRG)  
+
+SLIB:=mysdllib.a
+all: $(SLIB) $(TRG)  
+$(SLIB): $(SLST) 
+	ar crv $(SLIB) $(SLST) 
+$(TRG):$(SLIB)
 clean:	
-	rm -f  $(TRG)
+	rm -f  $(TRG) $(SLIB)
 

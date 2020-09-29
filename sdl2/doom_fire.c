@@ -1,13 +1,11 @@
 /* Ported from Fabien Sanglards DoomFirePSX https://github.com/fabiensanglard/DoomFirePSX/blob/master/flames.html */
-#include <SDL2/SDL.h>
-#include <stdio.h>
-#include <stdlib.h>
+#include "mysdl.h"
 
 #define FIRE_WIDTH 320
 #define FIRE_HEIGHT 336
 
-SDL_Window *window = NULL;
-SDL_Renderer *renderer = NULL;
+extern SDL_Window *window;
+extern SDL_Renderer *renderer;
 
 static unsigned char palette[37][3] = {
 	{ 0x07,0x07,0x07 },
@@ -109,35 +107,19 @@ void draw()
 }
 
 int main() {
-	if (SDL_Init(SDL_INIT_VIDEO) != 0) {
-		SDL_Log("Unable to initialize SDL: %s", SDL_GetError());
-		return 1;
-	}
-
-	window = SDL_CreateWindow(
-			"Doom Fire",
+        int ret;
+		SDL_Event e;
+        ret=sdl_start("Doom Fire",
 			SDL_WINDOWPOS_UNDEFINED,
 			SDL_WINDOWPOS_UNDEFINED,
 			FIRE_WIDTH,
 			FIRE_HEIGHT,
 			SDL_WINDOW_OPENGL
 	);
-
-	if (window == NULL) {
-		SDL_Log("Could not create window: %s\n", SDL_GetError());
-		return 1;
-	}
-
-	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
-
-	if (renderer == NULL) {
-		SDL_Log("Could not create renderer: %s\n", SDL_GetError());
-		return 1;
-	}
+        if(ret) return ret;
 	
 	setup();
 	while(1) {
-		SDL_Event e;
 		if (SDL_PollEvent(&e)) {
 			if (e.type == SDL_QUIT) {
 				break;
@@ -156,9 +138,6 @@ int main() {
 		draw();
 		SDL_RenderPresent(renderer);
 	}
-
-	SDL_DestroyRenderer(renderer);
-	SDL_DestroyWindow(window);
-	SDL_Quit();
+        sdl_stop();
 	return 0;
 }
