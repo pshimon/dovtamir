@@ -12,6 +12,11 @@ int sdl_start(char * wname,int x,int y,int w,int h,int flags)
     TTF_Init();
     if (!SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "1")) {
         fprintf(stderr,"Warning: Linear texture filtering not enabled!");
+        return 4;
+    }
+    if(!(IMG_Init(IMG_INIT_PNG)&IMG_INIT_PNG)) {
+        fprintf(stderr, "failed to init PNG SDL_Error: %s\n", SDL_GetError());
+        return 5;
     }
     window =
         SDL_CreateWindow(wname, x, y,w,h,flags);
@@ -35,6 +40,7 @@ void sdl_stop()
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
     TTF_Quit();
+    IMG_Quit();
     SDL_Quit();
 
 }
