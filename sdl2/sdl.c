@@ -6,19 +6,21 @@ int sdl_start(int x,int y,int w,int h)
 {
        
     if (SDL_Init(SDL_INIT_VIDEO)) {
-        fprintf(stderr, "SDL could not initialize! SDL_Error: %s\n",
-                SDL_GetError());
+        char str[MAX_STR_LENGTH] = {0};
+        sprintf(str, "SDL could not initialize! SDL_Error: %s\n", SDL_GetError());
+        write_err_msg(str);
         return 1;
     }
     TTF_Init();
     if (!SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "1")) {
-        fprintf(stderr, "Warning: Linear texture filtering not enabled!");
+        write_err_msg("Warning: Linear texture filtering not enabled!");
     }
     window =
         SDL_CreateWindow("sdl_gui_window", x, y,w,h,SDL_WINDOW_BORDERLESS);
-       if (!window) {
-        fprintf(stderr, "Window  could not be created! SDL_Error: %s\n",
-                SDL_GetError());
+    if (!window) {
+        char str[MAX_STR_LENGTH] = {0};
+        sprintf(str, "Window  could not be created! SDL_Error: %s\n", SDL_GetError());
+        write_err_msg(str);
         return 2;
     }
     renderer =
@@ -26,8 +28,9 @@ int sdl_start(int x,int y,int w,int h)
                            SDL_RENDERER_ACCELERATED |
                            SDL_RENDERER_PRESENTVSYNC);
     if (!renderer) {
-        fprintf(stderr, "renderer could not be created! SDL_Error: %s\n",
-                SDL_GetError());
+        char str[MAX_STR_LENGTH] = {0};
+        sprintf(str, "renderer could not be created! SDL_Error: %s\n", SDL_GetError());
+        write_err_msg(str);
         return 3;
     }
     SDL_SetRenderDrawBlendMode(renderer,SDL_BLENDMODE_BLEND);
@@ -45,7 +48,7 @@ void sdl_get_text(SDL_Texture ** tex,char *text, TTF_Font *font,SDL_Color *color
 {
     SDL_Surface *surface;
     SDL_DestroyTexture(*tex);
-    surface = TTF_RenderText_Solid(font, text, *color);
+    surface = TTF_RenderUTF8_Blended(font, text, *color);
     *tex = SDL_CreateTextureFromSurface(renderer, surface);
     SDL_FreeSurface(surface);
  }
@@ -55,9 +58,10 @@ int read_texture(SDL_Texture ** tex,char * file)
         SDL_Surface * surf;      
         surf = IMG_Load(file);
         if (!surf) {
-                fprintf(stderr, "Unable to load image! SDL_Error: %s\n",
-                                SDL_GetError());
-                return 1;
+            char str[MAX_STR_LENGTH] = {0};
+            sprintf(str, "Unable to load image! SDL_Error: %s\n", SDL_GetError());
+            write_err_msg(str);
+            return 1;
         }
         *tex = SDL_CreateTextureFromSurface(renderer,surf);                     SDL_FreeSurface(surf);
         return 0;
@@ -95,19 +99,21 @@ int sdl_start_mw(SDL_Renderer ** rnd, SDL_Window **wnd,
 {
        
     if (SDL_Init(SDL_INIT_VIDEO)) {
-        fprintf(stderr, "SDL could not initialize! SDL_Error: %s\n",
-                SDL_GetError());
+        char str[MAX_STR_LENGTH] = {0};
+        sprintf(str, "SDL could not initialize! SDL_Error: %s\n", SDL_GetError());
+        write_err_msg(str);
         return 1;
     }
     TTF_Init();
     if (!SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "1")) {
-        fprintf(stderr, "Warning: Linear texture filtering not enabled!");
+        write_err_msg("Warning: Linear texture filtering not enabled!");
     }
     *wnd =
         SDL_CreateWindow("sdl_gui_window", r->x, r->y,r->w,r->h,SDL_WINDOW_RESIZABLE);
-       if (!*wnd) {
-        fprintf(stderr, "Window  could not be created! SDL_Error: %s\n",
-                SDL_GetError());
+    if (!*wnd) {
+        char str[MAX_STR_LENGTH] = {0};
+        sprintf(str, "Window  could not be created! SDL_Error: %s\n", SDL_GetError());
+        write_err_msg(str);
         return 2;
     }
     *rnd =
@@ -115,8 +121,9 @@ int sdl_start_mw(SDL_Renderer ** rnd, SDL_Window **wnd,
                            SDL_RENDERER_ACCELERATED |
                            SDL_RENDERER_PRESENTVSYNC);
     if (!*rnd) {
-        fprintf(stderr, "renderer could not be created! SDL_Error: %s\n",
-                SDL_GetError());
+        char str[MAX_STR_LENGTH] = {0};
+        sprintf(str, "renderer could not be created! SDL_Error: %s\n", SDL_GetError());
+        write_err_msg(str);
         return 3;
     }
     SDL_SetRenderDrawBlendMode(*rnd,SDL_BLENDMODE_BLEND);
@@ -134,7 +141,7 @@ void sdl_get_text_mw(SDL_Renderer * rnd,SDL_Texture ** tex,char *text, TTF_Font 
 {
     SDL_Surface *surface;
     SDL_DestroyTexture(*tex);
-    surface = TTF_RenderText_Solid(font, text, *color);
+    surface = TTF_RenderUTF8_Blended(font, text, *color);
     *tex = SDL_CreateTextureFromSurface(rnd, surface);
     SDL_FreeSurface(surface);
  }
@@ -143,9 +150,10 @@ int read_texture_mw(SDL_Renderer * rnd,SDL_Texture ** tex,char * file)
         SDL_Surface * surf;      
         surf = IMG_Load(file);
         if (!surf) {
-                fprintf(stderr, "Unable to load image! SDL_Error: %s\n",
-                                SDL_GetError());
-                return 1;
+            char str[MAX_STR_LENGTH] = {0};
+            sprintf(str, "Unable to load image! SDL_Error: %s\n", SDL_GetError());
+            write_err_msg(str);
+            return 1;
         }
         *tex = SDL_CreateTextureFromSurface(rnd,surf);                     SDL_FreeSurface(surf);
         return 0;

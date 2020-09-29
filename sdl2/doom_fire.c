@@ -51,7 +51,6 @@ static unsigned char palette[37][3] = {
 
 static unsigned char fire_pixels[FIRE_WIDTH*FIRE_HEIGHT];
 
-static int y_scrolling = 440;
 
 int handle_input(SDL_Event *e)
 {
@@ -110,7 +109,6 @@ void draw()
 }
 
 int main() {
-	int i;
 	if (SDL_Init(SDL_INIT_VIDEO) != 0) {
 		SDL_Log("Unable to initialize SDL: %s", SDL_GetError());
 		return 1;
