@@ -64,6 +64,18 @@ int read_texture(SDL_Texture ** tex,char * file)
         *tex = SDL_CreateTextureFromSurface(renderer,surf);                     SDL_FreeSurface(surf);
         return 0;
 }
+int read_texture_ck(SDL_Texture ** tex,char * file,Uint8 r,Uint8 g,Uint8 b) 
+{
+        SDL_Surface * surf;      
+        surf = IMG_Load(file);
+        if (!surf) {
+            fprintf(stderr, "Unable to load image! SDL_Error: %s\n", SDL_GetError());
+            return 1;
+        }
+    SDL_SetColorKey( surf, SDL_TRUE, SDL_MapRGB( surf->format, r, g, b ) );
+        *tex = SDL_CreateTextureFromSurface(renderer,surf);                     SDL_FreeSurface(surf);
+        return 0;
+}
 int inside(int x, int y, SDL_Rect rect) 
 {
 	//printf("(%d %d %d %d)\n",rect.x,rect.y,rect.x+rect.w,rect.y+rect.h);

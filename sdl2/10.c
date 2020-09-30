@@ -15,7 +15,7 @@ int main( int argc, char* args[] )
             SDL_WINDOWPOS_UNDEFINED,
             SCREEN_WIDTH, SCREEN_HEIGHT,0);
     if(ret) return ret;
-        ret=read_texture(&foo_texture,"../image/foo.png");
+        ret=read_texture_ck(&foo_texture,"../image/foo.png",0,0xff,0xff);
     if(ret) return ret;
         ret=read_texture(&bg_texture,"../image/background.png");
     if(ret) return ret;
