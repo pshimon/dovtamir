@@ -2,7 +2,6 @@
 
 #define SCREEN_WIDTH 640
 #define  SCREEN_HEIGHT  480
-
    extern SDL_Window* window;
 int main( int argc, char* args[] ) {
     SDL_Surface* screenSurface = 0;
