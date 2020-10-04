@@ -12,7 +12,7 @@ CLOPT:=$(COPT)
 	$(CC) $(CLOPT)  -o $@ $^ $(SDL_LIBS)  -lm 
 LSTC:=sdl.c
 SLST:=$(LSTC:.c=.o)
-LSTBC:=hello_win.c hello_sound.c doom_fire.c simple_net.c 02.c 04.c 05.c 06.c 07.c 08.c 09.c 10.c 11.c 12.c 13.c 14.c 15.c 16.c g02.c g03.c g09.c 18.c sound.c
+LSTBC:=hello_win.c hello_sound.c doom_fire.c simple_net.c 02.c 04.c 05.c 06.c 07.c 08.c 09.c 10.c 11.c 12.c 13.c 14.c 15.c 16.c g02.c g03.c g09.c 18.c sound.c 26.c
 
 TRG:=$(LSTBC:.c=)
 

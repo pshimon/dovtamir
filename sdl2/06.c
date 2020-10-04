@@ -11,7 +11,7 @@ int main( int argc, char* args[] ) {
     int quit=0,ret;
     SDL_Event e;
     
-    ret=sdl_start( "05", SDL_WINDOWPOS_UNDEFINED,
+    ret=sdl_start( "06", SDL_WINDOWPOS_UNDEFINED,
             SDL_WINDOWPOS_UNDEFINED,
             SCREEN_WIDTH, SCREEN_HEIGHT,0);
     if( ret) return ret;
