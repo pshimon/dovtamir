@@ -4,6 +4,7 @@ int main()                           {
     int ret;
     int age;                            
     printf( "Please enter your age" );      
+    fflush(stdout);
     ret=scanf( "%d", &age );                    
     if(ret!=1) {
         fprintf(stderr,"scanf failed\n");
