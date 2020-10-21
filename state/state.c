@@ -1,7 +1,7 @@
 #include "state.h"
 
 
-int print_state(struct state *s) {
+int print_state(State *s) {
         if(!s) return -1;
         printf("name: %s\n",s->name);
         printf("capital: %s\n",s->capital);

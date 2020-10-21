@@ -10,8 +10,8 @@ enum STATE_TYPE{
         NUM_OF_STATE_TYPE  //3
 };
 
-struct state {
-//  struct state *next;
+typedef struct _State {
+//  State *next;
   double area;
   double population;
   int type;  // STATE_TYPE
@@ -21,8 +21,13 @@ struct state {
  Str capital;
  // char currency[16];
  Str currency;
-};
+} State;
 
-int print_state(struct state *s);
+typedef struct _State_array {
+        int n;//the length of array
+        State *data;//[n]
+} State_array;
+
+int print_state(State *s);
 #endif
 

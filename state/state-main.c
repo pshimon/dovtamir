@@ -2,7 +2,7 @@
  
 int main()
 {
-        struct state s={0};
+        State s={0};
         sprintf(s.name,"Israel");
         sprintf(s.capital,"Jerusalem");
         sprintf(s.currency,"new shekel");
