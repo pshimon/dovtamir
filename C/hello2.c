@@ -11,25 +11,27 @@ int main()  {
     float b;
     double c,d;
     int ret;
-    printf( "Please enter number of strikes: " );
+    printf( "Please enter number of strikes:\n" );
     ret=scanf( "%d", &n );
     if(ret!=1) {
         fprintf(stderr,"scanf failed\n");
         return 1;
     }
-    printf( "Please enter type  of strike (>0 relative, 0 absolute: " );
+    printf( "Please enter type  of strike (>0 relative, 0 absolute:\n " );
     ret=scanf( "%d", &relative );
     if(ret!=1) {
         fprintf(stderr,"scanf failed\n");
         return 1;
     }
-    printf( "Please enter damage per strake: " );
+    printf( "Please enter damage per strike: " );
+    fflush(stdout);
     ret=scanf( "%f", &b );
     if(ret!=1) {
         fprintf(stderr,"scanf failed\n");
         return 2;
     }
     printf( "Please enter life power: " );
+    fflush(stdout);
     ret=scanf( "%lf", &c );
     if(ret!=1) {
         fprintf(stderr,"scanf failed\n");
