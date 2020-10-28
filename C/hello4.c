@@ -4,7 +4,7 @@ int main()
 {
     int a,b,c,d;
     double a1,b1,c1;
-    printf( "Please enter 2 integer numbers: " );
+    printf( "Please enter 2 integer numbers:\n " );
     d=scanf( "%d %d", &a,&b );
     if(d!=2) {
         fprintf(stderr,"scanf failed\n");
@@ -12,7 +12,7 @@ int main()
     }
     c=a/b;
     printf( "%d/%d=%d\n", a,b,c );
-    printf( "Please enter 2 double numbers: " );
+    printf( "Please enter 2 double numbers:\n " );
     d=scanf( "%lf %lf", &a1,&b1 );
     if(d!=2) {
         fprintf(stderr,"scanf failed\n");

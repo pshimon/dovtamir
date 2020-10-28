@@ -20,5 +20,8 @@ int main()
     do {
         printf( "Hello, world!\n" );
     } while ( j != 0 );
+    for(j = ARRAY_SIZE-1; j>=0; j--){
+            printf( "%d %f\n",j,a[j]);
+    }
 }
 

@@ -9,7 +9,7 @@ int main()  {
     int a,b,c;
     double a1,b1,c1;
     int ret;
-    printf( "Please enter 2 integer numbers: " );
+    printf( "Please enter 2 integer numbers:\n " );
     ret=scanf( "%d %d", &a,&b );
     if(ret!=2) {
         fprintf(stderr,"scanf failed\n");
@@ -18,7 +18,7 @@ int main()  {
 
     c=a/b;
     printf( "%d/%d=%d\n", a,b,c );
-    printf( "Please enter 2 double numbers: " );
+    printf( "Please enter 2 double numbers:\n " );
     ret=scanf( "%lf %lf", &a1,&b1 );
     if(ret!=2) {
         fprintf(stderr,"scanf failed\n");

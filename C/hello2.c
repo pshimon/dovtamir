@@ -23,7 +23,11 @@ int main()  {
         fprintf(stderr,"scanf failed\n");
         return 1;
     }
-    printf( "Please enter damage per strike: " );
+    if(relative) {
+            printf( "Please enter damage per strike  positive, less than 1: " );
+    } else {
+            printf( "Please enter damage per strike  positive: " );
+    }
     fflush(stdout);
     ret=scanf( "%f", &b );
     if(ret!=1) {
