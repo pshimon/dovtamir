@@ -1,4 +1,4 @@
 name		capital		area	        population	curency		type
-Austria		Vienna		83.879	        8.859		euro		1
-Italy           Rome            301.338         60.36           euro            1
-France          Paris           643.801         66.99           euro            1
+Austria		Vienna		83.879	        8.859		euro		2
+Italy           Rome            301.338         60.36           euro            2
+France          Paris           643.801         66.99           euro            2

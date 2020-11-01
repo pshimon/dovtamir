@@ -29,5 +29,6 @@ typedef struct _State_array {
 } State_array;
 
 int print_state(State *s);
+int read_st(State *s,char* str);
 #endif
 
